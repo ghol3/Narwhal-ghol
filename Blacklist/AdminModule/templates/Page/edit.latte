@@ -1,0 +1,99 @@
+{block content}
+<script type="text/javascript">
+    var mybol = false;        
+    $(document).ready(function(){
+                $("#nadpis").keyup(function(){
+                    if($("#url").val() === '' || mybol === true){
+                    $("#url").val(make_url($(this).val()));
+                }
+                });
+            });
+        </script>
+    <script type="text/javascript" src="scripts.js"></script>
+        <div class="heading"><?php print(STR_212); ?> - {$page->title}</div>
+        <form n:name=editform>
+            <div style="float:right">
+                <input n:name=send type="submit" style="font-weight:bold;color:#005400" value="<?php print(STR_100); ?>">
+            </div>
+    
+            <div class="btns" style="margin-bottom:12px;clear:none;float:left;width:auto"><a href="{link Page:default}"><strong><?php print(STR_99); ?> - <?php print(STR_198); ?></strong></a></div>
+            
+                <div style="clear:both;font-size:0;height:0"></div>
+                <table style="width:100%;height:82%" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td style="height:199px">
+                            <div id="baseform" class="t twbg" style="width:450px">
+                                <p><span><?php print(STR_205); ?>:</span><input id="nadpis" type="text" n:name="title" style="width:350px"></p>
+                                <p><span><?php print(STR_14); ?>:</span><select n:name="category"></select></p>
+                                <p><span><?php print(STR_177); ?>:</span><div style="display:inline;position:relative;top:-1px;margin-right:5px;color:#444">antiradary.sk/</div><input
+                                type="text" n:name="link" id="url"
+                                onkeyup="checkUrl(this.value,this,'mereni-rychlosti-v-cr-passat-r36')"  style="width:236px;color:darkblue"></p>
+                                
+                                    <p><span><?php print(STR_206); ?>:</span><input type="checkbox" n:name="visibility" {if $page->visibility}checked{/if}></p>
+                                    <p><span><?php print(STR_207); ?>:</span><input type="checkbox" n:name="enableComments" {if $page->enableComments}checked{/if}></p>
+                                    <p><span><?php print(STR_208); ?>:</span><input type="checkbox" n:name="enableScore" {if $page->enableScore}checked{/if}></p>
+                                    <p><span><?php print(STR_209); ?>:</span><input type="text" n:name="tags"/></p>
+                            </div>
+                        </td>
+                        <td style="width:100%">
+                            <span><?php print(STR_210); ?>:</span>
+                            <textarea n:name="description" style="width:100%;height:100%;background:url(img/fade2.gif) repeat-x #f5faff;
+                                "></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="height:100%;padding-top:10px">
+                            <span><?php print(STR_211); ?></span>
+                            <textarea id="obsah" n:name="content" style="width:100%;height:350px;">
+                            </textarea>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+{/block}
+{block head}
+<link rel="stylesheet" href="{$basePath}/css/admin2.css">
+<style>
+            .twbg SPAN
+            {
+                background:#eee;
+            }
+            .t
+            {
+                float:left;
+            }
+            .t P
+            {
+                margin:0;
+                padding:0;
+                clear:left;
+                line-height:180%;
+            }
+            .t SPAN
+            {
+                width:80px;
+                font-weight:bold;
+                padding:0 5px;
+                margin:0 5px 2px 0;
+                display:block;
+                float:left;
+                -moz-box-sizing:border-box;
+                box-sizing:border-box;
+            }
+            .t SPAN.del
+            {
+                width:auto;
+                font-weight:normal;
+                background:#fff url(../../images/admin/del.gif) no-repeat center left;
+                padding:0 0 0 3px;
+                display:inline;
+                float:none;
+            }
+            .t SPAN.cprice
+            {
+                width:60px;
+                text-align:right;
+                font-weight:normal;
+            }
+        </style>
+{/block}

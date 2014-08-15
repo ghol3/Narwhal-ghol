@@ -1,0 +1,43 @@
+{block content}
+    <div class="heading">Správa modulů</div>
+    <a href="{link Module:new}"><strong>Instalace modulů</strong></a>
+    <img src="{$basePath}/images/admin/sep.gif" align="absmiddle" style="margin:0 5px">
+    <a href="{link Module:default}"><strong>Správa modulů</strong></a> 
+	<table cellpadding="0" cellspacing="0" class="mytable" id="table" style="margin-top:20px;margin-left:15px">
+            <thead>
+		<tr style="font-size:11px">
+                    <td class="nobtl"></td>
+                    <td>Název modulu</td>
+                    <td align="right">Autor</td>
+                    <td align="center">Datum</td>
+                    <td align="center">Popis</td>
+                    <td align="center">Verze</td>
+                    <td align="center">Aktivni</td>
+                    <td class="nobtlr"></td>
+                </tr>
+            </thead>
+            <tbody>
+                {foreach $modules as $module}
+		<tr>
+                    <td style="background:#eee;padding:0">
+                        
+                    </td>
+                    <td style="line-height:135%">
+                        <strong>{$module->name}</strong>
+                    </td>
+                    <td align="right">{$module->author}</td>
+                    <td align="center">{$module->date}</td>
+                    <td align="center">{$module->description}</td>
+                    <td align="center">{$module->version}</td>
+                    <td align="center">{$module->active}</td>
+                    <td style="background:#eee"><img src="{$basePath}/images/admin/del.gif" style="cursor:pointer" onclick="if(confirm('Opravdu chcete toto menu smazat?')) location.href={link delete! $module->id}"></td>
+                </tr>
+                {/foreach}
+                <tr class="tfoot">
+                    <td colspan="12" class="nobblr" style="padding:10px 0 30px 0;text-align:right">
+                        <input type="submit" style="font-weight:bold" value="Uložit změny">
+                    </td>
+                </tr>
+            </tbody>
+        </table>    
+{/block}

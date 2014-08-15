@@ -1,0 +1,48 @@
+{block content}
+    <div class="heading"><?php print(STR_242); ?></div>
+    <a href="{link Widget:add}"><strong><?php print(STR_241); ?></strong></a>
+    <img src="{$basePath}/images/admin/sep.gif" align="absmiddle" style="margin:0 5px">
+    <a href="{link Widget:default}"><strong><?php print(STR_242); ?></strong></a> 
+    {snippet widgets}
+	<table cellpadding="0" cellspacing="0" class="mytable" id="table" style="margin-top:20px;margin-left:15px">
+            <form action="{link Widget:updateAll}" method="POST">
+            <thead>
+		<tr style="font-size:11px">
+                    <td class="nobtl"></td>
+                    <td>#<?php print(STR_220); ?></td>
+                    <td align="right"><?php print(STR_430); ?></td>
+                    <td align="center"><?php print(STR_86); ?></td>
+                    <td align="center"><?php print(STR_214); ?></td>
+                    <td align="center"><?php print(STR_250); ?></td>
+                    <td class="nobtlr"></td>
+                </tr>
+            </thead>
+            <tbody>
+                {foreach $widgets as $widget}
+		<tr>
+                    <td style="background:#eee;padding:0">
+                        <a href="{link Widget:edit $widget->id}" style="display:block;padding:10px 6px"><img src="{$basePath}/images/admin/edit.gif" alt="Upravit"></a>
+                    </td>
+                    <td align="right">{$widget->id}</td>
+                    <td align="center">{$widget->name}</td>
+                    <?php  $myuser = $widget->getUserObject()->getUserInfo(); ?>
+                    <td align="center">{$myuser->username} {$myuser->surname}</td>
+                    <td align="center"><input type="text" size="2" name="priority[{$widget->id}]" value="{$widget->priority}"></td>
+                    <td align="center"><input type="checkbox" name="visibility[{$widget->id}]" {if $widget->visibility == 1}checked{/if}/></td>
+                    <td style="background:#eee"><img src="{$basePath}/images/admin/del.gif" style="cursor:pointer" onclick="if(confirm('Opravdu chcete tento widget smazat?')) location.href={link delete! $widget->id}"></td>
+                </tr>
+                {/foreach}
+                <tr class="tfoot">
+                    <td colspan="12" class="nobblr" style="padding:10px 0 30px 0;text-align:right">
+                        <input type="submit" style="font-weight:bold" value="<?php print(STR_100); ?>">
+                    </td>
+                </tr>
+            </tbody>
+        </table>    
+                {/snippet}
+    </form>
+{/block}
+
+{block head}
+<link rel="stylesheet" href="{$basePath}/css/admin2.css">
+{/block}

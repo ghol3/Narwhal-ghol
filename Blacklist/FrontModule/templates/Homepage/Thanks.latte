@@ -1,0 +1,33 @@
+{block title}{$settings->title} | Dokončenie objednávky{/block}
+
+{block content}
+    <section class="post-wrapper-top jt-shadow clearfix">
+	<div class="container">
+            <div class="col-lg-12">
+		<h2>Dokončení objednávky</h2>
+                <ul class="breadcrumb pull-right">
+                    <li><a href="{link Homepage:default}">Hlavná</a></li>
+                    <li>Dokončení objednávky</li>
+                </ul>
+            </div>
+	</div>
+    </section>
+    <section class="blog-wrapper">
+    	<div class="container">
+            <div id="content" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="row">
+                   <div class="blog-masonry">
+                        <div class="col-lg-12">
+                            <div class="blog-carousel">
+                                <div class="blog-carousel-header"></div><!-- end blog-carousel-header -->
+                                <div class="blog-carousel-desc">
+                                    {$page|noescape}
+                                </div><!-- end blog-carousel-desc -->
+                            </div><!-- end blog-carousel -->
+                        </div><!-- end col-lg-12 -->
+                    </div><!-- end blog-masonry -->
+            	</div><!-- end row --> 
+            </div><!-- end content -->
+    	</div><!-- end container -->
+    </section>
+{/block}

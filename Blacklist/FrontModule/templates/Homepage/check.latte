@@ -1,0 +1,151 @@
+{block title}{$settings->title} | Potvrdenie objednávky{/block}
+{block content}
+<section class="post-wrapper-top jt-shadow clearfix">
+	<div class="container">
+            <div class="col-lg-12">
+		<h2>Potvrdenie objednávky</h2>
+                <ul class="breadcrumb pull-right">
+                    <li><a href="{link Homepage:default}">Hlavná</a></li>
+                    <li>Potvrdenie objednávky</li>
+                </ul>
+            </div>
+	</div>
+    </section>
+<div class="container">
+    <div class="title">
+                        <h2>Potvrdenie objednávky</h2>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="cart_table table table-hover">
+                            <thead class="center-align">
+                                <tr>
+                                    <th>NÁZOV VÝROBKU</th>
+                                    <th>CENA BEZ DPH</th>
+                                    <th>CENA ZA JEDNOTKU</th>
+                                    <th>MNOŽSTVO</th>
+                                    <th>MEDZISÚČET</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <?php $priceWDPH = 0; $priceDPH = 0; ?>
+                            {foreach $cart->getProducts() as $p}
+                                <?php $priceWDPH += $p->price * $p->count; $priceDPH  += $p->pricedph * $p->count;?>
+                                <tr>
+                                    <td>
+                                        {if $p->image != ''}<a href="{link Product:show $p->link}"><img src="{$basePath}/{$p->image}" class="img-responsive alignleft" width="65" alt="{$p->name}"></a>{/if}
+                                        <a class="cart_title" href="{link Product:show $p->link}">{$p->name}</a>
+                                        <div class="rating">
+                                            <?php $static_i = 0; ?>
+                                            {for $i = 1; $i <= ($p->score / 2); $i++}
+                                                <i class="fa fa-star"></i>
+                                                <?php $static_i = $i; ?>
+                                            {/for}
+                                            {if ($static_i * 2) < $p->score}
+                                                <i class="fa fa-star-half"></i>
+                                            {/if}
+                                        </div><!-- rating -->
+                                    </td>
+                                    <td><span class="price">{$p->price|number:2} €</span></td>
+                                    <td><span class="price">{$p->pricedph|number:2} €</span></td>
+                                    <td align="center">     	
+                                        <div class="btn-shop">
+                                            <div class="form-inline">
+                                                <div class="form-group has-success has-feedback">
+                                                    <center><p style="font-size:20px;text-align:center;"><strong>{$p->count}</strong></p></center>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><p class="price2">{($p->pricedph * $p->count)|number:2} €</p></td>
+                                </tr>
+                            {/foreach}
+                            </tbody>
+                        </table>
+                            
+                            <table class="table" width="60%">
+                                  <thead>
+                                    <tr>
+                                      <th>Informácie</th>
+                                      <th>Vyplnili ste</th>
+                                      <th>Stav</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    {if $mydata['firm'] != ''}
+                                        <tr>
+                                            <td>Firma:</td>
+                                            <td>{$mydata['firm']}</td>
+                                            <td><center><img src="{$basePath}/images/frontend/icons/ok.png" width="20"/></center></td>
+                                        </tr>
+                                        <tr>
+                                            <td>IČO:</td>
+                                            <td>{$mydata['ic']}</td>
+                                            <td><center><img src="{$basePath}/images/frontend/icons/ok.png" width="20"/></center></td>
+                                        </tr>
+                                        <tr>
+                                            <td>DIČ:</td>
+                                            <td>{$mydata['dic']}</td>
+                                            <td><center><img src="{$basePath}/images/frontend/icons/ok.png" width="20"/></center></td>
+                                        </tr>
+                                        
+                                        <tr>
+                                    <td>Meno:</td>
+                                    <td>{$mydata['username']}</td>
+                                    <td><center><img src="{$basePath}/images/frontend/icons/ok.png" width="20"/></center></td>
+                                </tr> 
+                                <tr>
+                                    <td>Priezvisko:</td>
+                                    <td>{$mydata['surname']}</td>
+                                    <td><center><img src="{$basePath}/images/frontend/icons/ok.png" width="20"/></center></td>
+                                </tr> 
+                                <tr>
+                                    <td>Ulica a čp.</td>
+                                    <td>{$mydata['address']}</td>
+                                    <td><center><img src="{$basePath}/images/frontend/icons/ok.png" width="20"/></center></td>
+                                </tr> 
+                                <tr>
+                                    <td>Město:</td>
+                                    <td>{$mydata['city']} {$mydata['zip']}</td>
+                                    <td><center><img src="{$basePath}/images/frontend/icons/ok.png" width="20"/></center></td>
+                                </tr> 
+                                <tr>
+                                    <td>Telefónne číslo:</td>
+                                    <td>{$mydata['phone']}</td>
+                                    <td><center><img src="{$basePath}/images/frontend/icons/ok.png" width="20"/></center></td>
+                                </tr> 
+                                <tr>
+                                    <td>Email:</td>
+                                    <td>{$mydata['email']}</td>
+                                    <td><center><img src="{$basePath}/images/frontend/icons/ok.png" width="20"/></center></td>
+                                </tr> 
+                                <tr>
+                                    <td>Platba:</td>
+                                    <td>
+                                        {if $mydata['payment'] == 'D'}
+                                            Dobierkou
+                                        {elseif $mydata['payment'] == 'K'}
+                                            Kartou
+                                        {elseif $mydata['payment'] == 'H'}
+                                            V hotovosti
+                                        {else}
+                                            Prevodom
+                                        {/if}
+                                    </td>
+                                    <td><center><img src="{$basePath}/images/frontend/icons/ok.png" width="20"/></center></td>
+                                </tr> 
+                                {if $mydata['note'] != ''}
+                                <tr>
+                                    <td>Poznámka:</td>
+                                    <td>{$mydata['note']}</td>
+                                    <td><center><img src="{$basePath}/images/frontend/icons/ok.png" width="20"/></center></td>
+                                </tr> 
+                                {/if}
+                                    {/if}
+                                  </tbody>
+                                </table>
+                                <br/>
+                            <a href="{link Homepage:Order}" class="btn btn-primary">Späť</a> <a href="{link doneOrder!}" class="btn btn-primary">Odoslať</a>
+                            <br/><br/>
+                    </div>
+                            </div>
+{/block}

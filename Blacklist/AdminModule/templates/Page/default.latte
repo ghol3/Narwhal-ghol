@@ -1,0 +1,44 @@
+{block content}
+    <div class="heading"><?php print(STR_198); ?></div>
+    <a href="{link Page:add}"><strong><?php print(STR_197); ?></strong></a>
+    <img src="{$basePath}/images/admin/sep.gif" align="absmiddle" style="margin:0 5px">
+    <a href="{link Page:default}"><strong><?php print(STR_198); ?></strong></a>
+	<table cellpadding="0" cellspacing="0" class="mytable" id="table" style="margin-top:20px;margin-left:15px">
+            <thead>
+		<tr style="font-size:11px">
+                    <td class="nobtl"></td>
+                    <td><?php print(STR_199); ?></td>
+                    <td align="right"><?php print(STR_200); ?></td>
+                    <td align="center"><?php print(STR_14); ?></td>
+                    <td align="center"><?php print(STR_202); ?></td>
+                    <td align="center"><?php print(STR_203); ?></td>
+                    <td align="center"><?php print(STR_204); ?></td>
+                    <td class="nobtlr"></td>
+                </tr>
+            </thead>
+            <tbody>
+                {foreach $pages as $page}
+		<tr>
+                    <td style="background:#eee;padding:0">
+                        <a href="{link Page:edit $page->id}" style="display:block;padding:10px 6px"><img src="{$basePath}/images/admin/edit.gif" alt="Upravit"></a>
+                    </td>
+                    <td style="line-height:135%">
+                        <strong>{$page->title}</strong><br><a href="{link :Front:Page:show $page->link}" target="_blank" title="<?php print(STR_400); ?>">{$page->link}</a>
+                    </td>
+                    <td align="right">{$page->authorObject->account}</td>
+                    <td align="center">{$page->categoryObject->name}</td>
+                    <td align="center">{$page->views}</td>
+                    <td align="center">{$page->commentCount}</td>
+                    <td align="center">{$page->createDate}</td>
+                    <td style="background:#eee"><img src="{$basePath}/images/admin/del.gif" style="cursor:pointer" onclick="if(confirm('Opravdu chcete tuto položku smazat?')) location.href={link delete! $page->id}"></td>
+                </tr>
+                {/foreach}
+                <tr class="tfoot">
+                </tr>
+            </tbody>
+        </table>    
+{/block}
+
+{block head}
+<link rel="stylesheet" href="{$basePath}/css/admin2.css">
+{/block}

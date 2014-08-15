@@ -1,0 +1,42 @@
+{block content}
+    <div class="heading"><?php print(STR_259); ?></div>
+    <a href="{link User:add}"><strong><?php print(STR_272); ?></strong></a>
+    <img src="{$basePath}/images/admin/sep.gif" align="absmiddle" style="margin:0 5px">
+    <a href="{link User:default}"><strong><?php print(STR_259); ?></strong></a>
+	<table cellpadding="0" cellspacing="0" class="mytable" id="table" style="margin-top:20px;margin-left:15px">
+            <thead>
+		<tr style="font-size:11px">
+                    <td class="nobtl"></td>
+                    <td><?php print(STR_261); ?></td>
+                    <td align="right"><?php print(STR_262); ?></td>
+                    <td align="center"><?php print(STR_265); ?></td>
+                    <td align="center"><?php print(STR_266); ?></td>
+                    <td align="center"><?php print(STR_425); ?></td>
+                    <td align="center"><?php print(STR_426); ?></td>
+                    <td class="nobtlr"></td>
+                </tr>
+            </thead>
+            <tbody>
+                {foreach $users as $user}
+		<tr>
+                    <td style="background:#eee;padding:0">
+                        <a href="{link User:edit $user->id}" style="display:block;padding:10px 6px"><img src="{$basePath}/images/admin/edit.gif" alt="Upravit"></a>
+                    </td>
+                    <td align="right">{$user->account}</td>
+                    <td align="right">{$user->email}</td>
+                    <td align="center">{$user->registrationDate}</td>
+                    <td align="center">{$user->adminLevel}</td>
+                    <td align="center">{$user->getUserInfo()->username}</td>
+                    <td align="center">{$user->getUserInfo()->surname}</td>
+                    <td style="background:#eee"><img src="{$basePath}/images/admin/del.gif" style="cursor:pointer" onclick="if(confirm('Opravdu chcete tuto položku smazat?')) location.href={link delete! $user->id}"></td>
+                </tr>
+                {/foreach}
+                <tr class="tfoot">
+                </tr>
+            </tbody>
+        </table>    
+{/block}
+
+{block head}
+<link rel="stylesheet" href="{$basePath}/css/admin2.css">
+{/block}

@@ -1,0 +1,92 @@
+{block content}
+    <div class="heading"><?php print(STR_233); ?></div>
+    <a href="{link Category:add}"><strong><?php print(STR_232); ?></strong></a>
+    <img src="{$basePath}/images/admin/sep.gif" align="absmiddle" style="margin:0 5px">
+    <a href="{link Category:default}"><strong><?php print(STR_233); ?></strong></a> 
+    <form action="{link Category:updateAll}" method="POST">
+        <table cellpadding="0" cellspacing="0" class="mytable" id="table" style="margin-top:20px;margin-left:15px">
+		<thead>
+		    <tr>
+			<td class="nobtl"></td>
+			<td><?php print(STR_230); ?></td>
+			<td><?php print(STR_220); ?></td>
+			<td><?php print(STR_221); ?></td>
+			<td><?php print(STR_177); ?></td>
+                        <td><?php print(STR_231); ?></td>
+                        <td><?php print(STR_250); ?></td>
+			<td align="center"><?php print(STR_170); ?></td>
+			<td class="nobtlr"></td>
+		    </tr>
+		</thead>
+		<tbody>
+                    {foreach $categories as $ctg}
+                    <tr class='subcat{$ctg->getParentIndex()}'>
+			<td style="background:#eee;padding:0">
+			    <a href="{link Category:edit $ctg->id}" style="display:block;padding:7px">
+                                <img src="{$basePath}/images/admin/edit.gif" alt="<?php print(STR_196); ?>">
+			    </a>
+			</td>
+			<td class="lh catcz">
+			    <div><strong>{$ctg->name}</strong></div>
+			</td>
+			<td align="right" style="background:#ddd">{$ctg->id}</td>
+			<td style="background:#ddd">
+			    <input size="2" name="parent[{$ctg->id}]" type="text" value="{$ctg->getParentObject()->id}">
+			</td>
+			<td>
+			    <a href="{link :Front:Category:show $ctg->link}" target="_blank" title="<?php print(STR_400); ?>">{$ctg->link}</a>
+			</td>
+                        <td align="center">{$ctg->createDate|date:'%d.%m.%Y %H:%m'}</td>
+                        <td align="center"><input type="checkbox" name="visibility[{$ctg->id}]" {if $ctg->visibility}checked{/if}/></td>
+			<td align="center"><input size="2" name="priority[{$ctg->id}]" value="{$ctg->priority}"></td>
+			<td style="background:#eee"><img src="{$basePath}/images/admin/del.gif" style="cursor:pointer" class="ajax" onclick="if(confirm('Opravdu chcete tuto kategorii smazat?')) location.href={link Category:delete $ctg->id}"></td>
+		    </tr>
+                    {/foreach}		 		    
+<tr class="tfoot">
+<td colspan="10" class="nobblr" style="padding:10px 0 30px 0;text-align:right">
+<input type="submit" style="font-weight:bold" value="<?php print(STR_100); ?>">
+</td>
+</tr>
+</tbody>
+</table>
+    </form>
+{/block}
+
+
+{block head}
+    <link rel="stylesheet" href="{$basePath}/css/admin2.css">
+    <style>
+	    TD.lh{
+		line-height:1.4;
+	    }
+	    TR.subcat1 TD.catcz DIV{
+		padding-left:13px;border-left:1px dotted #555;margin-left:7px;
+	    }
+	    TR.subcat2 TD.catcz DIV{
+		padding-left:13px;border-left:1px dotted #555;margin-left:20px;
+	    }
+	    TR.subcat3 TD.catcz DIV{
+		padding-left:13px;border-left:1px dotted #555;margin-left:33px;
+	    }
+            TR.subcat4 TD.catcz DIV{
+		padding-left:13px;border-left:1px dotted #555;margin-left:46px;
+	    }
+	    LABEL{
+		white-space:nowrap;background:#eee;border-radius:3px;font-size:12px;padding:3px;display:inline-block;margin:2px;
+	    }
+	    LABEL INPUT{
+		margin:0 5px 0 0;padding:0;vertical-align:middle;display:inline-block;
+	    }
+	    LABEL.xon{
+		background:#AAF889;
+	    }
+	    .yel{
+		float:right
+	    }
+	    .yel LABEL{
+		background:#fff;border:1px solid #ddd;padding:2px;}
+	    LABEL.xred{
+		background:#ff7171;
+	    }
+	</style>
+{/block}

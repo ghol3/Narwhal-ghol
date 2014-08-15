@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" class="csstransforms csstransforms3d csstransition js video audio"> 
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
+    <script src="{$basePath}/js/jquery.js"></script>
+    <script src="{$basePath}/js/netteForms.js"></script>
+    <script src="{$basePath}/js/ajax.js"></script>
+    <!-- Bootstrap Styles -->
+    <link href="{$basePath}/css/frontend/bootstrap.css" rel="stylesheet">
+    <!-- Styles -->
+    <link href="{$basePath}/css/frontend/style.css" rel="stylesheet">
+    <!-- Carousel Slider -->
+    <link href="{$basePath}/css/frontend/owl-carousel.css" rel="stylesheet">
+    <!-- CSS Animations -->
+    <link href="{$basePath}/css/frontend/animate.min.css" rel="stylesheet">
+    <!-- SLIDER ROYAL CSS SETTINGS -->
+    <link href="{$basePath}/css/frontend/royalslider/royalslider.css" rel="stylesheet">
+    <link href="{$basePath}/css/frontend/royalslider/skins/default-inverted/rs-default-inverted.css" rel="stylesheet">
+    <!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
+    <link rel="stylesheet" type="text/css" href="{$basePath}/css/frontend/rs-plugin/css/settings.css" media="screen" />
+    <link rel="stylesheet" href="{$basePath}/css/frontend/prettyPhoto.css" type="text/css">
+    <!-- Support for HTML5 -->
+    <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    {block head}{/block}
+    <title>{block title|striptags|upper}{/block}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{$settings->sitedescription}">
+    <meta name="keywords" content="{$settings->keywords}">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Antiradary.SK">
+    <link rel="shortcut icon" href="{$basePath}/images/favicon.ico">
+    <script>
+$(function () {
+    $.nette.init();
+});
+</script>
+</head>
+<body>
+    <div class="animationload">
+        <h1 class="loader">Antiradary.SK</h1>
+    </div>
+    <div id="topbar" class="clearfix">
+    	<div class="container">
+            <div class="col-lg-6">
+                <div class="social-icons">
+                    <span class="topbar-email">{$settings->sitename}</span>
+                </div><!-- end social icons -->
+            </div><!-- end columns -->
+            <div class="col-lg-6 col-md-8 col-sm-8 col-xs-12">
+            	<div class="callus">
+                    <span class="topbar-email"><span class="fa fa-envelope clr"></span> <a href="mailto:name@yoursite.com">{$settings->site_email}</a></span>
+                    <span class="topbar-phone"><span class="fa fa-phone clr"></span> {$settings->phone}</span>
+                </div><!-- end callus -->
+            </div><!-- end columns -->
+        </div><!-- end container -->
+    </div>
+    
+    <header id="header-style-1" class="header-fix">
+        <div class="container">
+            <div class="navbar yamm navbar-default">
+                <div class="navbar-header">
+                    <button type="button" data-toggle="collapse" data-target="#navbar-collapse-1" class="navbar-toggle">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="{link Homepage:default}"><img src="{$basePath}/images/frontend/logo/logo.jpg" width="280" height="50" alt="logo"/></a>
+        	</div><!-- end navbar-header -->
+                
+		<div id="navbar-collapse-1" class="navbar-collapse collapse navbar-right">
+                    <ul class="nav navbar-nav">  
+                        {foreach $menu as $menuItem}
+                            
+                                {if count($menuItem->submenus) == 0}
+                                    <li class="dropdown yamm-fw">
+                                    {if $menuItem->link == 'informacie-o-antiradaroch'}
+                                        <a n:href="Article:default" data-toggle="dropdown" {if $menuItem->link == $activePage}class="selected-item dropdown-toggle" {/if} onclick="location.href={link Article:default}" class="dropdown-toggle"> {$menuItem->name}<div class="arrow-up"></div></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                        {foreach $allarticles as $artc}
+                                            <li>
+                                                <a n:href="Article:show $artc->link">{$artc->title}</a>
+                                            </li>
+                                        {/foreach}
+                                    </ul>
+                                    {elseif $menuItem->link == 'homepage'}
+                                        <a n:href="Homepage:default" {if $menuItem->link == $activePage}class="selected-item"{/if} title="{$menuItem->description}">{$menuItem->name}</a>
+                                    {elseif $menuItem->url}
+                                        <a n:href="$menuItem->url $menuItem->link" {if $menuItem->link == $activePage}class="selected-item"{/if} title="{$menuItem->description}">{$menuItem->name}</a>
+                                    {else}
+                                        <a href="{$menuItem->link}">{$menuItem->name}</a>
+                                    {/if}  
+                                    </li>
+                                    
+                                {else}
+                                    <li class="dropdown">
+                                    <a href="#" data-toggle="dropdown" class="dropdown-toggle {if $menuItem->link == $activePage}selected-item{/if}"> {$menuItem->name}<div class="arrow-up"></div></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        {foreach $menuItem->submenus as $sub}
+                                            <li>
+                                                {if $sub->link == 'homepage'}
+                                                    <a n:href="Homepage:default" title="{$sub->description}">{$sub->name}</a>
+                                                {elseif $sub->url}
+                                                    <a n:href="$sub->url $sub->link" title="{$sub->description}">{$sub->name}</a>
+                                                {else}
+                                                    <a href="{$sub->link}">{$sub->name}</a>
+                                                {/if}  
+                                            </li>
+                                        {/foreach}
+                                    </ul>
+                                    </li>
+                                {/if}
+                        {/foreach}
+
+                        
+                    </ul><!-- end navbar-nav -->
+		</div><!-- #navbar-collapse-1 -->
+            </div><!-- end navbar yamm navbar-default -->
+	</div><!-- end container -->
+    </header><!-- end header-style-1 -->
+    {block content}{/block}
+    {foreach $bottom as $bot}
+        {$bot->content|noescape}
+    {/foreach}
+    
+    {foreach $menu as $menuItem}
+        {if count($menuItem->getSubmenus()) == 0}
+            <li>
+                {if $menuItem->link == 'informacie-o-antiradaroch'}
+                     <a n:href="Article:default" title="{$menuItem->description}">{$menuItem->name}</a>
+                {elseif $menuItem->link == 'homepage'}
+                    <a n:href="Homepage:default" title="{$menuItem->description}">{$menuItem->name}</a>
+                {elseif $menuItem->url}
+                    <a n:href="$menuItem->url $menuItem->link" title="{$menuItem->description}">{$menuItem->name}</a>
+                {else}
+                    <a href="{$menuItem->link}">{$menuItem->name}</a>
+                {/if}  
+            </li>
+        {/if}
+    {/foreach}
+                    </ul>
+                </div>
+            </div><!-- end large-7 --> 
+        </div><!-- end container -->
+    </div><!-- end copyrights -->
+    
+    <div class="dmtop" id="totop">Scroll to Top</div>          
+    <!-- Enable media queries on older bgeneral_rowsers -->
+    <!--[if lt IE 9]>
+    <script src="{$basePath}js/respond.min.js"></script>  <![endif]-->
+    <!-- Main Scripts-->
+    <script src="{$basePath}/js/bootstrap.min.js"></script>
+    <script src="{$basePath}/js/owl.carousel.min.js"></script>
+    <script src="{$basePath}/js/jquery.parallax-1.1.3.js"></script>
+    <script src="{$basePath}/js/jquery.simple-text-rotator.js"></script>
+    <script src="{$basePath}/js/wow.min.js"></script>
+    <script src="{$basePath}/js/custom.js"></script>
+    <script src="{$basePath}/js/jquery.isotope.min.js"></script>
+    <script src="{$basePath}/js/custom-portfolio-masonry.js"></script>
+    
+    <!-- Fullwidth Video Div  -->
+    <script src="{$basePath}/js/menu.js"></script>
+    <script src="{$basePath}/js/jquery.prettyPhoto.js"></script>
+    <script src="{$basePath}/js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+{block content}
+    <a n:href="Auth:login">Hlavní stránka</a>
+    <h1>Výpis komentářů k článkům</h1>
+    
+    <table style="border: 1px #000 solid">
+	<tr>
+	    <td>Autor</td>
+	    <td>Komentář</td>
+	    <td>Datum</td>
+	    <td>Status</td>
+	    <td>Publikovat</td>
+	    <td>Zakázat</td>
+	    <td>Označit jako spam</td>
+	    <td>Reakce na</td>
+	    <td>Zobrazit celý</td>
+	    <td>Vymazat</td>
+	</tr>
+	{foreach $comments as $cmnt}
+	    {if $cmnt->article != NULL}
+		<tr>
+		    <td align="center">{$cmnt->author->account|firstUpper}</td>
+		    <td align="center">{$cmnt->content|truncate:30}</td>
+		    <td align="center">{$cmnt->date|date:'F j, Y'}</td>
+		    <td align="center">{if $cmnt->status == 0}Nepublikováno{elseif $cmnt->status == 1}Publikováno{elseif $cmnt->status == 2}Spam{else}Zakázáno{/if}</td>
+		    <td align="center"><a n:href="Publish! $cmnt->id">x</a></td>
+		    <td align="center"><a n:href="Ban! $cmnt->id">x</a></td>
+		    <td align="center"><a n:href="Spam! $cmnt->id">x</a></td>
+		    <td align="center">{if $cmnt->reaction->author != NULL}{$cmnt->reaction->author->account} | id = {$cmnt->reaction->id}{else}---{/if}</td>
+		    <td align="center"><a n:href="show $cmnt->id">x</a></td>
+		    <td align="center"><a n:href="delete! $cmnt->id">x</a></td>
+		</tr>
+	    {/if}
+	{/foreach}
+    </table>
+    
+    
+    <h1>Výpis komentářů k vlastním stránkám</h1>
+    
+    <table style="border: 1px #000 solid">
+	<tr>
+	    <td>Autor</td>
+	    <td>Komentář</td>
+	    <td>Datum</td>
+	    <td>Status</td>
+	    <td>Publikovat</td>
+	    <td>Zakázat</td>
+	    <td>Označit jako spam</td>
+	    <td>Reakce na</td>
+	    <td>Zobrazit celý</td>
+	    <td>Vymazat</td>
+	</tr>
+	{foreach $comments as $cmnt}
+	    {if $cmnt->page != NULL}
+		<tr>
+		    <td align="center">{$cmnt->author->account|firstUpper}</td>
+		    <td align="center">{$cmnt->content|truncate:30}</td>
+		    <td align="center">{$cmnt->date|date:'F j, Y'}</td>
+		    <td align="center">{if $cmnt->status == 0}Nepublikováno{elseif $cmnt->status == 1}Publikováno{elseif $cmnt->status == 2}Spam{else}Zakázáno{/if}</td>
+		    <td align="center"><a n:href="Publish! $cmnt->id">x</a></td>
+		    <td align="center"><a n:href="Ban! $cmnt->id">x</a></td>
+		    <td align="center"><a n:href="Spam! $cmnt->id">x</a></td>
+		    <td align="center">{if $cmnt->reaction->author != NULL}{$cmnt->reaction->author->account} | id = {$cmnt->reaction->id}{else}---{/if}</td>
+		    <td align="center"><a n:href="show $cmnt->id">x</a></td>
+		    <td align="center"><a n:href="delete! $cmnt->id">x</a></td>
+		</tr>
+	    {/if}
+	{/foreach}
+    </table>
+{/block}
+
+{block head}
+<link rel="stylesheet" href="{$basePath}/css/admin2.css">
+{/block}

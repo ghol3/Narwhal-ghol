@@ -1,0 +1,26 @@
+{block content}
+    {if $settings->users_can_register}
+    <form n:name=loginForm onSubmit="validate()" class="login">
+                <p>
+                    <label n:name=account>Účet</label>
+                    <input type="text" n:name="account" id="login" value="account">
+                </p>
+                <p>
+                    <label n:name="password">Heslo:</label>
+                    <input n:name=password id="password" value="4815162342">
+                </p>
+                <p class="login-submit">
+                    <button n:name=send type="submit" class="login-button">Login</button>
+                </p>
+                <p class="forgot-password">BLACKLIST CMS - CORE | <a href="{link :Front:Homepage:default}">Back to homepage</a></p>
+            </form>
+    <div n:foreach="$flashes as $flash" class="flash {$flash->type}">{$flash->message}</div>
+    {else}
+        Bohužel, nemůžete se přihlásit do systému. Tato funkce není povolena.
+    {/if}
+{/block}
+
+{block head}
+<script src="{$basePath}/js/validateForm.js"></script>
+<script src="{$basePath}/js/sha512-min.js"></script>
+{/block}

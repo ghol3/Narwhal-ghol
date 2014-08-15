@@ -1,0 +1,99 @@
+{block content}        
+        <form n:name="editBasicform">
+            <div style="float:right">
+            </div>
+                    
+
+            <div class="btn">
+                <div style="clear:both;font-size:0;height:0"></div>
+                <div id="baseform" class="t twbg" style="width:100%;">
+                    <h3><?php print(STR_308); ?></h3>
+                        <p><span><?php print(STR_309); ?>:</span>
+                    	<input type="text" n:name="site_url" size="90" style="width:570px;"></p>
+
+                    	<p><span><?php print(STR_310); ?>:</span>
+                    	<input type="text" n:name="site_name" size="90" class="" style="width:570px;"></p>
+                        
+                        <p><span><?php print(STR_311); ?>:</span>
+                            <input type='text' n:name='title' size='90' class='' style='width:570px;'></p>
+                        
+                        <p><span><?php print(STR_312); ?>:</span>
+                            <input type="text" n:name="phone" size="90" class="" style="width:570px;"></p>
+       
+                        <!--<p><span><?php print(STR_313); ?>:</span>
+                    	<input type="text" n:name="username" size="90" class="" style="width:570px;"></p>
+                        
+                        <p><span><?php print(STR_314); ?>:</span>
+                    	<input type="text" n:name="surname" size="90" class="" style="width:570px;"></p>
+                        -->
+                        <p><span><?php print(STR_315); ?>:</span>
+                            <textarea n:name="sitedescription" size="90" class="" style="width:570px;height:100px"></textarea></p>
+                        
+                        <p><span><?php print(STR_316); ?>:</span>
+                            <textarea n:name="keywords" size="90" class="" style="width:570px;height:100px"></textarea></p>
+
+                    	<p><span><?php print(STR_317); ?>:</span>
+                    	<input type="text" n:name="site_email" size="90" class="" style="width:570px;"></p>
+
+                        <p><span><?php print(STR_318); ?>:</span>
+                            <input type="text" n:name="pagination" style="width:570px;"/></p>
+                        <p><span><?php print(STR_319); ?></span><input type="checkbox" n:name="comment_only_user"/></p>
+                        <p><span><?php print(STR_320); ?></span><input type='checkbox' n:name='users_can_register'/></p>
+                        <p><span><?php print(STR_321); ?></span><input n:name='log_number' style='width:570px'/></p>
+                    <td colspan="2"><input n:name=send type="submit" class="btn btn-success right" value="<?php print(STR_100); ?>"></td>
+
+
+                </form>
+                </div>
+{/block}
+
+
+{block head}
+<link rel="stylesheet" href="{$basePath}/css/admin2.css">
+<link rel="stylesheet" href="{$basePath}/css/admin.css">
+<script type="text/javascript" src="scripts.js"></script>
+        <div class="heading"><?php print(STR_307); ?></div>
+        <style>
+            .twbg SPAN
+            {
+                background:#eee;
+            }
+        .t
+        {
+            float:left;
+        }
+        .t P
+        {
+            margin:0;
+            padding:0;
+            clear:left;
+            line-height:180%;
+        }
+        .t SPAN
+        {
+            width:230px;
+            font-weight:bold;
+            padding:0 5px;
+            margin:0 5px 2px 0;
+            display:block;
+            float:left;
+            -moz-box-sizing:border-box;
+            box-sizing:border-box;
+        }
+        .t SPAN.del
+        {
+            width:auto;
+            font-weight:normal;
+            background:#fff url(../../images/admin/del.gif) no-repeat center left;
+            padding:0 0 0 3px;
+            display:inline;
+            float:none;
+        }
+        .t SPAN.cprice
+        {
+            width:60px;
+            text-align:right;
+            font-weight:normal;
+        }
+        </style>
+{/block}

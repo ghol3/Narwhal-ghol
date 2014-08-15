@@ -1,0 +1,50 @@
+{block title}{$settings->title} | {$category->name}{/block}
+
+{block content}
+    <section class="post-wrapper-top jt-shadow clearfix">
+        <div class="container">
+            <div class="col-lg-12">
+		<h2>{$category->name}</h2>
+                <ul class="breadcrumb pull-right">
+                    <li><a href="{link Homepage:default}">Hlavná</a></li>
+                    <li>{$category->name}</li>
+                </ul>
+            </div>
+	</div>
+    </section>
+    <section class="blog-wrapper">
+        <div class="container">
+            <div class="shop_wrapper col-lg-8">
+                <div class="clearfix"></div>
+                <div class="padding-top">
+
+                    <div class="clearfix"></div>
+                    <hr>
+                </div><!-- end padding-top -->
+            </div><!-- end shop-wrapper -->
+            
+            <div id="sidebar" class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            	<div class="widget">
+                    <div class="title"><h3 class="panel-title-20">Kategorie</h3></div>
+                    <ul class="nav nav-tabs nav-stacked">
+                        {foreach $categories as $ctg} 
+                            {if $ctg->name != '' || $ctg->link != ''}
+                                <li><a {if $ctg->link == $category->link}class="selected-item"{/if} href="{link Category:show $ctg->link}">{$ctg->name|truncate:40}</a></li>
+                            {/if}
+                        {/foreach}
+                    </ul>                              
+                </div><!-- end widget -->
+                <div class="widget">
+                    <div class="title"><h3 class="panel-title-20">Zaujímavosti o antiradaroch</h3></div>
+                    <ul class="nav nav-tabs nav-stacked">
+                        {foreach $rarticles as $rartc}
+                            {if $rartc->title != '' || $rartc->link != ''}
+                                <li ><a href="{link Article:show $rartc->link}">{$rartc->title|truncate:46}</a></li>
+                            {/if}
+                        {/foreach}
+                    </ul>                              
+                </div><!-- end widget -->
+            </div><!-- end sidebar -->  
+        </div><!-- end container -->
+    </section>
+{/block}

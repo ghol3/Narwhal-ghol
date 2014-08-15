@@ -1,0 +1,7 @@
+{block content}
+    {if $settings->users_can_register}
+        {control registrationForm}
+    {else}
+        Bohužel, nemůžete se registrovat, tato funkce je zakázána.
+    {/if}
+{/block}

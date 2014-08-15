@@ -1,0 +1,39 @@
+{block title}{$settings->title} | Články a zaujímavosti o antiradaroch{/block}    
+
+{block content}
+    <section class="post-wrapper-top jt-shadow clearfix">   
+        <div class="container">
+            <div class="col-lg-12">
+		<h2>Články a zaujímavosti o antiradaroch</h2>
+                <ul class="breadcrumb pull-right">
+                    <li><a href="{link Homepage:default}">Hlavná</a></li>
+                    <li>Články a zaujímavosti o antiradaroch</li>
+                </ul>
+            </div>
+	</div>
+    </section>
+    <section class="blog-wrapper">
+    	<div class="container">
+            <div id="content" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="row">
+                   <div class="blog-masonry">
+                        <div class="col-lg-12">
+                            <div class="blog-carousel">
+                                <div class="blog-carousel-header"></div>
+                                <!-- end blog-carousel-header -->
+                                <div class="blog-carousel-desc">
+                                    {foreach $articles as $article}
+                                        <h2><a href="{link Article:show $article->link}">{$article->title}</a></h2>
+                                        <div class="art">
+                                            {$article->description|noescape}
+                                        </div>
+                                    {/foreach}
+                                </div><!-- end blog-carousel-desc -->
+                            </div><!-- end blog-carousel -->
+                        </div><!-- end col-lg-12 -->
+                    </div><!-- end blog-masonry -->
+            	</div><!-- end row --> 
+            </div><!-- end content -->
+    	</div><!-- end container -->
+    </section>
+{/block}

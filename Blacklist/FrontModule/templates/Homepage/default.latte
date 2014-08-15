@@ -1,0 +1,13 @@
+{block content}
+    {foreach $widgets as $widget}
+        <div class="{$widget->class}">
+            {if $widget->type == 'latte' || $widget->type == 'php'}
+               {=$latte->render($widget->content, array('articles' => $articles, 'basePath' => $basePath))|noescape}
+            {else}
+                {$widget->content|noescape}
+            {/if}
+        </div>
+    {/foreach}
+{/block}
+
+{block title}{$settings->title}{/block}

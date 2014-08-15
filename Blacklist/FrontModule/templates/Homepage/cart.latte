@@ -1,0 +1,116 @@
+{block title}{$settings->title} | Nákupný košík{/block}
+
+{block content}
+    <section class="post-wrapper-top jt-shadow clearfix">
+        <div class="container">
+            <div class="col-lg-12">
+                <h2>Nákupný košík</h2>
+                <ul class="breadcrumb pull-right">
+                    <li><a href="{link Homepage:default}">Hlavná</a></li>
+                    <li>Nákupný košík</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    {snippet mycart}
+    <section class="blog-wrapper">
+        <div class="container">
+            {if count($cart->getProducts()) > 0}
+            <div class="shop_wrapper col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="title">
+                    <h2>Potvrdenie objednávky</h2>
+                </div>
+                <form action='{link updateCart!}' method='post' class='form-inline ajax' id="frm-addToCartForm">
+                    <div class="table-responsive">
+                        <table class="cart_table table table-hover">
+                            <thead class="center-align">
+                                <tr>
+                                    <th>NÁZOV VÝROBKU</th>
+                                    <th>CENA BEZ DPH</th>
+                                    <th>CENA ZA JEDNOTKU</th>
+                                    <th>MNOŽSTVO</th>
+                                    <th>MEDZISÚČET</th>
+                                    <th>AKCIA</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $priceWDPH = 0; $priceDPH = 0; ?>
+                                {foreach $cart->getProducts() as $p}
+                                    <?php $priceWDPH += $p->price * $p->count; $priceDPH  += $p->pricedph * $p->count; ?>
+                                    <tr>
+                                        <td>
+                                            {if $p->image != ''}<a href="{link Product:show $p->link}"> <img src="{$basePath}/{$p->image}" class="img-responsive alignleft" width="65" alt="{$p->name}"></a>{/if}
+                                            <a class="cart_title" href="{link Product:show $p->link}">{$p->name}</a>
+                                            <div class="rating">
+                                                <?php $static_i = 0; ?>
+                                                {for $i = 1; $i <= ($p->score / 2); $i++}
+                                                    <i class="fa fa-star"></i>
+                                                    <?php $static_i = $i; ?>
+                                                {/for}
+                                                {if ($static_i * 2) < $p->score}
+                                                    <i class="fa fa-star-half"></i>
+                                                {/if}
+                                            </div><!-- rating -->
+                                        </td>
+                                        <td class="price" align="center">{$p->price|number:2} €</td>
+                                        <td class="price" align="center">{$p->pricedph|number:2} €</td>
+                                        <td>     	
+                                            <div class="btn-shop">
+                                                <div class="form-group has-success has-feedback">
+                                                    <span onclick="javascript:add({$p->product}, -1);"><i class="fa fa-minus"></i></span>
+                                                    <input type="text" name='count[{$p->name}]' value='{$p->count}' class="form-control panel-title-20" id="{$p->product}" placeholder="{$p->count}">
+                                                    <span onclick="javascript:add({$p->product}, 1);"><i class="fa fa-plus"></i></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><p class="price2">{($p->pricedph * $p->count)|number:2} €</p></td>
+                                        <td><a class="ajax remove" title="Zmazať jeden kus" n:href="removeItemFromCart! $p->name"></a></td>
+                                    </tr>
+                                {/foreach}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row padding-top">
+                        <div class="col-md-6">
+                            <div class="title">
+                                <h2>Dodatočné informácie</h2>
+                            </div>
+                            
+                            <div class="box">
+                                <span class="pull-left">Cena bez DPH:</span>
+                                <span class="pull-right">{$priceWDPH|number:2} €</span>
+                                <br>
+                                <span class="pull-left">Cena dopravy:</span>
+                                <span class="pull-right">Zdarma</span>
+                                <br><br>
+                                <span class="pull-left">Celková cena</span>
+                                <span class="pull-right"><a href="#" class="price">{$priceDPH|number:2} €</a></span>
+                                <br><br>
+                                <span class="margin-top">
+                                    <input type='submit' class="btn btn-primary" value='Aktualizovať'/>
+                                    <a href="{link Homepage:order}" class="btn btn-primary">Pokračovať v objednávke</a>
+                                </span>
+                                <div class="clearfix"></div>
+                            </div><!-- end box -->
+                        </div>
+                    </div><!-- end row -->
+                    <div class="clearfix"></div>
+                </form>
+            </div><!-- end shop-wrapper -->
+            {else}
+                <div class="shop_wrapper col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="title">
+                        <h2>Váš košík je prázdny.</h2>
+                    </div>
+                </div>
+            {/if}
+        </div><!-- end container -->
+    </section>
+    {/snippet}
+{/block}
+
+{block head}
+    <script src="{$basePath}/js/cart.js"></script>
+    
+{/block}

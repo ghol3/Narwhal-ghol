@@ -1,0 +1,87 @@
+{block content}        
+        <form n:name="editform">
+            <div class="heading"><?php print(STR_275); ?> - {$user->account}</div>
+            <div style="float:right"><input n:name=send type="submit" style="font-weight:bold;color:#005400;padding:7px" value="<?php print(STR_100); ?>"></div>
+	    <div class="btns" style="margin-bottom:12px;clear:none;float:left;width:auto"><a href="{link User:default}"><strong><?php print(STR_99); ?> - <?php print(STR_259); ?></strong></a></div>
+	    <div style="clear:both;font-size:0;height:0"></div>
+                    
+
+            <div class="btn">
+                <div style="clear:both;font-size:0;height:0"></div>
+                <div id="baseform" class="t twbg" style="width:100%;">
+                        <p><span><?php print(STR_422); ?>:</span>
+                    	<input type="text" n:name="account" size="90"></p>
+                        <p><span><?php print(STR_423); ?>:</span>
+                    	<input type="password" n:name="password" size="90"></p>
+                        <p><span><?php print(STR_424); ?>:</span>
+                    	<input type="password" n:name="password1" size="90"></p>
+                        <p><span><?php print(STR_399); ?>:</span>
+                    	<input type="text" n:name="email" size="90"></p>
+                        <p><span><?php print(STR_425); ?>:</span>
+                    	<input type="text" n:name="username" size="90"></p>
+                        <p><span><?php print(STR_426); ?>:</span>
+                    	<input type="text" n:name="surname" size="90"></p>
+                        <p><span><?php print(STR_427); ?>:</span>
+                    	<select n:name="adminLevel"></select></p>
+                        <p><span><?php print(STR_267); ?>:</span>
+                    	<input type="text" n:name="facebook" size="90"></p>
+                        <p><span><?php print(STR_268); ?>:</span>
+                    	<input type="text" n:name="skype" size="90"></p>
+                        <p><span><?php print(STR_274); ?>:</span>
+                    	<input type="text" n:name="birthday" size="90"></p>
+
+
+                </form>
+                </div>
+{/block}
+
+
+{block head}
+<link rel="stylesheet" href="{$basePath}/css/admin2.css">
+<link rel="stylesheet" href="{$basePath}/css/admin.css">
+<script type="text/javascript" src="scripts.js"></script>
+        
+        <style>
+            .twbg SPAN
+            {
+                background:#eee;
+            }
+        .t
+        {
+            float:left;
+        }
+        .t P
+        {
+            margin:0;
+            padding:0;
+            clear:left;
+            line-height:180%;
+        }
+        .t SPAN
+        {
+            width:230px;
+            font-weight:bold;
+            padding:0 5px;
+            margin:0 5px 2px 0;
+            display:block;
+            float:left;
+            -moz-box-sizing:border-box;
+            box-sizing:border-box;
+        }
+        .t SPAN.del
+        {
+            width:auto;
+            font-weight:normal;
+            background:#fff url(../../images/admin/del.gif) no-repeat center left;
+            padding:0 0 0 3px;
+            display:inline;
+            float:none;
+        }
+        .t SPAN.cprice
+        {
+            width:60px;
+            text-align:right;
+            font-weight:normal;
+        }
+        </style>
+{/block}

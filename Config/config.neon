@@ -1,0 +1,56 @@
+#
+# SECURITY WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
+#
+# If you don't protect this directory from direct web access, anybody will be able to see your passwords.
+# http://nette.org/security-warning
+#
+parameters:
+
+
+php:
+        date.timezone: Europe/Prague
+	# zlib.output_compression: yes
+
+nette:
+        application:
+            errorPresenter: Error
+            mapping:
+                *: Blacklist\*Module\Presenters\*Presenter
+
+        session:
+            expiration: 14 days
+
+
+services:
+    authorizator:
+            class: Nette\Security\Permission
+            setup:
+                - addRole('guest')
+                - addRole('member')
+                - addRole('editor')
+                - addRole('admin')
+                - addResource('Admin:Page')
+                - addResource('Admin:Article')
+                - addResource('Admin:Menu')
+                - addResource('Admin:User')
+                - addResource('Admin:Module')
+                - addResource('Admin:Settings')
+                - addResource('Admin:Category')
+                - addResource('Admin:Product')
+                - addResource('Admin:Task')
+                - addResource('Admin:Panel')
+                - addResource('Admin:Order')
+                - addResource('Admin:Dealer')
+                - addResource('Admin:Warehouse')
+                - addResource('Admin:Language')
+                - addResource('Admin:Export')
+                - addResource('Admin:Widget')
+                - addResource('Admin:Log')
+                - allow('editor', 'Admin:Page')
+                - allow('editor', 'Admin:Article')
+                - allow('editor', 'Admin:Menu')
+                - allow('editor', 'Admin:Product')
+                - allow('admin') # all
+    - Blacklist\Model\Security\AdminAuthenticator   
+    - Blacklist\RouterFactory
+    router: @Blacklist\RouterFactory::createRouter

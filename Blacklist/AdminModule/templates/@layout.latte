@@ -1,0 +1,59 @@
+{**
+ * My Application layout template.
+ *
+ * @param string   $basePath web base path
+ * @param string   $robots   tell robots how to index the content of a page (optional)
+ * @param array    $flashes  flash messages
+ *}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="">
+	<meta name="robots" content="{$robots}" n:ifset="$robots">
+        <META http-equiv="cache-control" content="no-cache">
+	<title>{block title|striptags|upper}Nette Application Skeleton{/block}</title>
+	<link rel="shortcut icon" href="{$basePath}/images/favicon.ico">
+        <link rel="stylesheet" href="{$basePath}/css/frontend/messages.css">
+        <script src="{$basePath}/js/jquery.js"></script>
+	 <script src="{$basePath}/js/scripts.js"></script>
+        <script src="{$basePath}/js/netteForms.js"></script>
+        <script src="{$basePath}/js/ajax.js"></script>
+  
+        <script type="text/javascript">
+            var nodiac = { 'á': 'a', 'č': 'c', 'ď': 'd', 'é': 'e', 'ě': 'e', 'í': 'i', 'ň': 'n', 'ó': 'o', 'ř': 'r', 'š': 's', 'ť': 't', 'ú': 'u', 'ů': 'u', 'ý': 'y', 'ž': 'z' };
+            /** Vytvoření přátelského URL
+             * @param string řetězec, ze kterého se má vytvořit URL
+             * @return string řetězec obsahující pouze čísla, znaky bez diakritiky, podtržítko a pomlčku
+             * @copyright Jakub Vrána, http://php.vrana.cz/
+             */
+            function make_url(s) {
+                s = s.toLowerCase();
+                var s2 = '';
+                for (var i=0; i < s.length; i++) {
+                    s2 += (typeof nodiac[s.charAt(i)] != 'undefined' ? nodiac[s.charAt(i)] : s.charAt(i));
+                }
+                return s2.replace(/[^a-z0-9_]+/g, '-').replace(/^-|-$/g, '');
+            }
+        </script>
+        <script> $(function () {
+                $.nette.init();
+            });
+            </script>
+	{block head}{/block}
+</head>
+
+<body>
+	<script> document.documentElement.className+=' js' </script>
+
+        {snippet flashes}
+	<div n:foreach="$flashes as $flash" class="flash {$flash->type}">{$flash->message|noescape}</div>
+        {/snippet}
+        {block content}{/block}
+
+	{block scripts}
+	
+	{/block}
+</body>
+</html>

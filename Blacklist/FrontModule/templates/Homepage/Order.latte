@@ -1,0 +1,100 @@
+{block title}{$settings->title} | Objednávka{/block}
+
+{block content}
+    <section class="post-wrapper-top jt-shadow clearfix">
+	<div class="container">
+            <div class="col-lg-12">
+		<h2>Vytvorenie objednávky</h2>
+                <ul class="breadcrumb pull-right">
+                    <li><a href="{link Homepage:default}">Hlavná</a></li>
+                    <li>Vytvorenie objednávky</li>
+                </ul>
+            </div>
+	</div>
+    </section>
+
+    <section class="blog-wrapper">
+        <div class="container">
+            <div class="shop_wrapper col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <form n:name="newOrderForm"> 
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <div class="title">
+                                <h2>Fakturačná adresa</h2>
+                            </div>  
+                            <div id="bilding">
+                                <label>Meno *</label>
+                                <input n:name="username" class="form-control" placeholder="Zadajte svoje pravé meno">
+                                <label>Priezvisko *</label>
+                                <input n:name="surname" class="form-control" placeholder="Zadajte svoje pravé priezvisko">
+                                <label>Firma</label>
+                                <input n:name="firm" class="form-control" placeholder="Zadejte názov firmy">
+                                <label>IČ</label>
+                                <input n:name="ic" class="form-control" placeholder="Zadejte názov firmy">
+                                <label>DIČ</label>
+                                <input n:name="dic" class="form-control" placeholder="Zadejte názov firmy">
+                                <label>Ulice a čp. *</label>
+                                <input n:name="address" class="form-control" placeholder="Ulica a číslo popisné">
+                                <label>Město *</label>
+                                <input n:name="city" class="form-control" placeholder="Zadejte názov mesta">
+                                <label>Poštové smerovacie číslo *</label>
+                                <input n:name="zip" class="form-control" placeholder="*****">
+                                <label>Emailová adresa *</label>
+                                <input n:name="email" class="form-control" placeholder="Zadejte emailovú adresu">
+                                <label>Telefónne číslo *</label>
+                                <input n:name="phone" class="form-control" placeholder="Zadejte telefonné číslo">
+                                <br/>
+                                
+                            </div>    
+                        </div>
+                        
+                        
+                        
+                        <div class="col-sm-7">
+                            <div class="title">
+                                <h2>Dodatočné informácie</h2>
+                            </div>  
+                            <div id="textarea">
+                                <label>Vaše poznámka</label>
+                                <textarea n:name="note" class="form-control" rows="10" placeholder="Sem môžete zadať poznámku k Vašej objednávke."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="title">
+                	<h2>Zvoľte spôsob platby</h2>
+                    </div>
+                         
+                    <div class="general_row">
+                        <div id="payment">
+                            <label class="checkbox payment-method inline">
+                                {$form['payment']->getControlPart('D')} Platba dobierkou
+                                <span class="small"></span>
+                            </label>
+                            <label class="checkbox payment-method inline">
+                                {$form['payment']->getControlPart('P')} Platba prevodom
+                                <span class="small"></span>
+                            </label>
+                            <label class="checkbox payment-method inline">
+                                {$form['payment']->getControlPart('H')} Platba v hotovosti na provozovně
+                                <span class="small"></span>
+                            </label>
+                            <label class="checkbox payment-method inline">
+                                {$form['payment']->getControlPart('K')} Plartba kartou na provozovně
+                                <span class="small"></span>
+                            </label>
+                        </div>
+                   </div><!-- end shop-wrapper -->
+                    <button n:name="send" type="submit" value="SEND" id="submit" class="btn btn-lg btn-primary pull-right">Pokračovať</button>
+                    
+            </form> 
+                                </div>
+    	</div><!-- end container -->
+    </section>
+{/block}
+
+
+{block head}
+    <script src="{$basePath}/js/cart.js"></script>
+{/block}

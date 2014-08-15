@@ -1,0 +1,98 @@
+{block content}
+    <script type="text/javascript" src="http://www.vlajky.eu/admin/scripts.js"></script>
+    <div class="heading"><?php print(STR_254); ?></div>
+
+	<form n:name="addform">
+	    <div style="float:right"><input n:name=send type="submit" style="font-weight:bold;color:#005400;padding:7px" value="<?php print(STR_253); ?>"></div>
+	    <div class="btns" style="margin-bottom:12px;clear:none;float:left;width:auto"><a href="{link Panel:default}"><strong><?php print(STR_99); ?> - <?php print(STR_254); ?></strong></a></div>
+	    <div style="clear:both;font-size:0;height:0"></div>
+
+	    <div id="hdivblock" class="hdivw">
+		<div class="hmenu">
+		    <a href="javascript:void(0)" class="on" id="hmm0" onclick="hmenu(0)"></a>
+		</div>
+
+		<div id="hdivarea" class="hdiv">
+		    <div class="hdivin" style="display:block" id="hm0">
+			<table style="width:100%;height:100%" cellpadding="0" cellspacing="0">
+			    <tr>
+				<td>
+				    <div id="baseform" class="t twbg">
+					<p><span><?php print(STR_109); ?>:</span><input type="text" n:name="name" value="" style="width:450px"></p>
+                                        <p><span><?php print(STR_418); ?>:</span><input type="text" n:name="icon" value="" style="width:450px"></p>
+                                        <p><span><?php print(STR_214); ?>:</span><select n:name='position'></select></p>
+                                        <p><span><?php print(STR_234); ?>:</span><input type='checkbox' n:name='visibility'/></p>
+				    </div>
+				</td>
+			    </tr>
+			    <tr>
+				<td style="height:100%;padding-top:10px"><textarea n:name="content" style="width:100%;height:400px"></textarea></td>
+			    </tr>
+			</table>
+		    </div>
+
+		    <div class="hdivin" id="hm1">
+			<table style="width:100%;height:100%" cellpadding="0" cellspacing="0">
+			    <tr>
+				<td>
+				    <div id="baseform" class="t twbg">
+					<p><span>Název 24:</span><input type="text" name="cz_24" value="" style="width:450px"></p>
+<p><span>Title 24:</span><input type="text" name="title_24" value="" style="width:450px"></p>
+<p><span>H1 24:</span><input type="text" name="h1_24" value="" style="width:450px"></p>
+<p><span>URL 24:</span><div style="display:inline;position:relative;top:-1px;margin-right:5px;color:#444">vlajky24.cz/</div><input
+ type="text" value="" name="url_24" style="width:230px;color:darkblue">
+&nbsp;&nbsp;<a href="http://www.vlajky24.cz//" target="_blank">&raquo; otevřít v novém okně</a></p>
+</div>
+</td>
+</tr>
+<tr>
+<td style="height:100%;padding-top:10px"><textarea name="obsah_24" style="width:100%;height:100%"></textarea></td>
+</tr>
+</table>
+</div>
+
+
+
+<div class="hdivin" id="hm2">
+<table style="width:100%;height:100%" cellpadding="0" cellspacing="0">
+<tr><td>
+<div id="baseform" class="t twbg">
+<p><span>Název SK:</span><input type="text" name="sk" value="" style="width:450px"></p>
+<p><span>Title SK:</span><input type="text" name="title_sk" value="" style="width:450px"></p>
+<p><span>H1 SK:</span><input type="text" name="h1_sk" value="" style="width:450px"></p>
+<p><span>URL SK:</span><div style="display:inline;position:relative;top:-1px;margin-right:5px;color:#444">sk.vlajky.eu/</div><input
+ type="text" value="" name="url_sk" style="width:230px;color:darkblue">
+&nbsp;&nbsp;<a href="http://sk.vlajky.eu//" target="_blank">&raquo; otevřít v novém okně</a></p>
+</div>
+</td>
+</tr>
+<tr>
+<td style="height:100%;padding-top:10px"><textarea name="obsah_sk" style="width:100%;height:100%"></textarea></td>
+</tr>
+</table>
+</div>
+
+
+
+</div>
+
+</form>
+{/block}
+
+{block head}
+<link rel="stylesheet" href="{$basePath}/css/admin2.css">
+<style>
+	    .twbg SPAN{
+		background:#eee
+	    }
+	    .t{
+		float:left
+	    }
+	    .t P{
+		margin:0;padding:0;clear:left;line-height:180%;
+	    }
+	    .t SPAN{
+		width:80px;font-weight:bold;padding:0 5px;margin:0 5px 2px 0;display:block;float:left;-moz-box-sizing:border-box;box-sizing:border-box;
+	    }
+	</style>
+{/block}

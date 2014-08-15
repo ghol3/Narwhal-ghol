@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title></title><link href="{$basePath}/css/admin2.css" type="text/css" rel="stylesheet"><meta http-equiv="content-Type" content="text/html; charset=windows-1250"></head><body><script type="text/javascript" src="top_data/scripts.js"></script><script type="text/javascript">
+function updateExp(){
+        var tmp = readCookie("export");
+        if(tmp) {
+                tmp = tmp.split(':');
+                document.getElementById('export').innerHTML = tmp.length-1;
+        }
+        else {
+                document.getElementById('export').innerHTML = '';
+        }
+        window.setTimeout("updateExp()", 2000);
+}
+
+function readCookie(name)
+{
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+}
+window.setTimeout("updateExp()", 2000);
+
+
+var lToggleA = ''
+function toggleA(o){
+        if(lToggleA==o)return false;
+        else if(lToggleA != '') lToggleA.className='';
+        if(o.className=='mclicked')o.className='';
+        else o.className='mclicked';
+        lToggleA=o;
+}
+
+function sb(){
+	window.setTimeout(function(){
+		top.frm.document.location.reload();
+		document.location.reload();
+	}, 1000);
+}
+</script>
+
+<style>
+BODY{ background:#eee;overflow:auto;padding:0;margin:0;}
+.menuwrap{ padding:15px 15px 5px 15px;}
+.num{ float:right;font-weight:bold;}
+</style>
+
+<div class="menuwrap">
+<div class="menu">
+
+
+<div style="margin-bottom:18px">
+<br>
+
+
+
+<br>
+<p><span>OBSAH WEBU</span></p>
+{if $user->isAllowed('Admin:Page')}<a href="{link Page:default}" onclick="toggleA(this);" target="frm"><?php print(STR_11); ?></a>{/if}
+{if $user->isAllowed('Admin:Article')}<a href="{link Article:default}" onclick="toggleA(this);" target="frm"><?php print(STR_12); ?></a>{/if}
+{if $user->isAllowed('Admin:Menu')}<a href="{link Menu:default}" onclick="toggleA(this);" target="frm"><?php print(STR_13); ?></a>{/if}
+{if $user->isAllowed('Admin:Category')}<a href="{link Category:default}" onclick="toggleA(this);" target="frm"><?php print(STR_14); ?></a>{/if}
+{if $user->isAllowed('Admin:Widget')}<a href="{link Widget:default}" onclick="toggleA(this)" target="frm"><?php print(STR_15); ?></a>{/if}
+{if $user->isAllowed('Admin:Panel')}<a href="{link Panel:default}" onclick="toggleA(this);" target="frm"><?php print(STR_16); ?></a>{/if}
+<br>
+<p><span>Systém</span></p>
+{if $user->isAllowed('Admin:User')}<a href="{link User:default}" onclick="toggleA(this);" target="frm"><?php print(STR_17); ?></a>{/if}
+{if $user->isAllowed('Admin:Task')}<a href="{link Task:default}" onclick="toggleA(this);" target="frm"><?php print(STR_18); ?></a>{/if}
+{if $user->isAllowed('Admin:Settings')}<a href="{link Settings:default}" onclick="toggleA(this);" target="frm"><?php print(STR_19); ?></a>{/if}
+{if $user->isAllowed('Admin:Settings')}<a href="{link Settings:testdisplay}" onclick="toggleA(this);" target="frm"><?php print(STR_22); ?></a>{/if}
+</div>
+</div>
+
+
+
+</body></html>

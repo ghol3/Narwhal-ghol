@@ -1,0 +1,9 @@
+{block content}
+
+    {if !$settings->users_can_register}
+        Nejprve se musíte přihlásit
+    {else}
+        profil uživatele -> {$userData->account}
+    {/if}
+
+{/block}

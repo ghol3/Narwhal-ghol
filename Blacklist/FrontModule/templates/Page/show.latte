@@ -1,0 +1,55 @@
+{block title}{$settings->title} | {$page->title}{/block}
+
+{block content}
+    <section class="post-wrapper-top jt-shadow clearfix">
+	<div class="container">
+            <div class="col-lg-12">
+		<h2>{$page->title}</h2>
+                <ul class="breadcrumb pull-right">
+                    <li><a href="{link Homepage:default}">Hlavná</a></li>
+                    <li>{$page->title}</li>
+                </ul>
+            </div>
+	</div>
+    </section>
+    <section class="blog-wrapper">
+    	<div class="container">
+            <div id="content" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="row">
+                   <div class="blog-masonry">
+                        <div class="col-lg-12">
+                            <div class="blog-carousel">
+                                <div class="blog-carousel-header"></div><!-- end blog-carousel-header -->
+                                <div class="blog-carousel-desc">
+                                    {$page->description|noescape}
+                                    {$page->content|noescape}
+                                    {if $page->link == 'kontakt'}
+                                        <div class="contact_form">
+                                            <div id="message"></div>
+                                            <form id="contactform" n:name="cntactForm">
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="text" n:name="username" id="name" class="form-control" placeholder="Meno a priezvisko"> 
+                                                    <input type="text" n:name="email" id="email" class="form-control" placeholder="Váš email">
+                                                    <input type="text" n:name="phone" id="website" class="form-control" placeholder="Telefon"> 
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="text" n:name="subject" id="subject" class="form-control" placeholder="Predmet">  
+                                                    <textarea class="form-control" n:name="body" id="comments" rows="6" placeholder="Telo správy"></textarea>
+                                                    <button type="submit" n:name="send" value="SEND" id="submit" class="btn btn-lg btn-primary pull-right">Odoslať správu</button>
+                                                </div>
+                                            </form>    
+                                        </div><!-- end contact-form -->
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    
+                                    </section>
+                                    {/if}
+                                </div><!-- end blog-carousel-desc -->
+                            </div><!-- end blog-carousel -->
+                        </div><!-- end col-lg-12 -->
+                    </div><!-- end blog-masonry -->
+            	</div><!-- end row --> 
+            </div><!-- end content -->
+    	</div><!-- end container -->
+    </section>
+{/block}
